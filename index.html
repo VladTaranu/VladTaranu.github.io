@@ -1,46 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>My Page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Typing-With-Blinking.css">
-    <link rel="stylesheet" href="assets/css/Contact-Details-icons.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Vlad's Socials</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222222; /* change background to dark grey */
+      color: #ffffff; /* change font color to white */
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      flex-direction: column; /* Add this to stack elements vertically */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Stack elements vertically on all screen sizes */
+    }
+
+    .socials {
+      z-index: 1;
+      text-align: center;
+      width: 100%; /* Change width to 100% for full width on mobile */
+    }
+
+    .donut {
+      width: 100%; /* Change width to 100% for full width on mobile */
+      transform: translate(0%, 0%); /* Remove translate */
+      margin-top: 20px; /* Add some margin at the top */
+    }
+    @media (min-width: 768px) {
+      body {
+        flex-direction: row; /* Make body layout horizontal again */
+        overflow-y: visible;
+      }
+
+      .container {
+        flex-direction: row; /* Make container layout horizontal again */
+      }
+
+      .socials {
+        width: 40%; /* Back to 40% */
+        margin-right: 50px;
+        transform: translate(0%, 5%);
+      }
+
+      .donut {
+        width: 40%; /* Back to 40% */
+        transform: translate(-40%, 0%);
+        margin-top: 0; /* Remove top margin */
+      }
+    }
+    h1 {
+      color: #ffffff; /* change font color to white */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    a {
+      color: #0066C0; /* change link color to light grey */
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #FF6347; /* change hover color to a slightly darker grey */
+    }
+
+  </style>
 </head>
+<body>
+  <audio id="achievement" src="achievement.mp3"></audio>
+  <div class="container">
+    <div class="socials">
+      <h1>Vlad Teodor Taranu</h1>
+      <ul>
+        <li>Discord: .Vlad#7318</li>
+        <li>GitHub: <a href="https://github.com/VladTaranu" target="_blank">VladTaranu</a></li>
+        <li>Instagram: <a href="https://instagram.com/vladtaranu_" target="_blank">vladtaranu_</a></li>
+        <li>Facebook: <a href="https://www.facebook.com/VladTaranu" target="_blank">Vlad Taranu</a></li>
+        <li>Twitter: <a href="https://twitter.com/VladTaranu_" target="_blank">VladTaranu_</a></li>
+        <li>Spotify: <a href="https://open.spotify.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
+        <li>YouTube: <a href="https://www.youtube.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
+        <li>PayPal: <a href="https://www.paypal.me/VladTaranu" target="_blank">Vlad Taranu</a></li>
+        <li>Email: <a href="mailto:taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
+        <li>Tel: <a href="tel:+40744292027">+40(744)292027</a></li>
+        <li><a href="#" onclick="">🥞</a></li> <!-- Add onclick event -->
+      </ul>
+    </div>
 
-<body style="transform: translate(-4px) translateX(0px);height: 515.8px;width: 713px;">
-    <section class="py-4 py-xl-5" style="padding-left: 28px;margin-top: 26px;margin-bottom: 54px;padding-right: 34px;transform: translateY(-57px) scale(0.80);margin-left: 14px;margin-right: 550px;">
-        <div class="bg-light border rounded border-0 border-light d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5" data-bss-hover-animate="pulse" style="--bs-light: #121212;--bs-light-rgb: 18,18,18;height: 347.4px;width: 751px;padding-right: 48px;padding-bottom: 48px;border-radius: 18px;">
-            <div class="pb-2 pb-lg-1">
-                <h2 class="font-monospace fw-bold mb-2">This page is still under construction</h2>
-                <p class="font-monospace mb-0">but here's a temporary page with my socials</p><img width="240" height="195" src="assets/img/pale-tower-crane.png" style="transform: translateY(32px) rotate(0deg) scale(1);border-color: rgb(252,189,48);">
-                <div style="padding-bottom: 48px;margin-right: 507px;position: fixed;transform: translateX(137px) translateY(-48px) translateZ(0px) rotate(7deg) scale(0.98);"><a class="btn btn-primary font-monospace fs-5 py-2 px-4" role="button" data-bss-hover-animate="swing" href="https://taranuvlad.carrd.co/" style="--bs-primary: #000000;--bs-primary-rgb: 0,0,0;background: rgb(0,0,0);padding-top: 8px;padding-bottom: 24px;backdrop-filter: blur(0px) invert(0%);transform: translate(0px) translateX(0px) translateY(0px) rotate(0deg);--bs-body-bg: var(--bs-blue);position: fixed;border-width: 1px;border-top-width: 2px;border-top-color: #fcbd30;border-right-width: 2px;border-right-color: #fcbd30;border-bottom-width: 2px;border-bottom-color: #fcbd30;border-left-width: 2px;border-left-color: #fcbd30;">Visit</a></div>
-            </div>
-        </div>
-    </section>
-    <section class="py-4 py-xl-5" style="padding-left: 28px;margin-top: 26px;margin-bottom: 54px;padding-right: 34px;transform: translateY(-255px) scale(0.80);margin-left: 14px;margin-right: 550px;">
-        <div class="bg-light border rounded border-0 border-light d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5" data-bss-hover-animate="pulse" style="--bs-light: #121212;--bs-light-rgb: 18,18,18;height: 347.4px;width: 751px;padding-right: 48px;padding-bottom: 48px;border-radius: 18px;">
-            <div class="card mb-5 pb-xxl-0 mb-xxl-5 me-xxl-5 ms-xxl-5 ps-xxl-0 pe-xxl-0" style="color: rgba(248,249,250,0);background: rgba(255,255,255,0);opacity: 1;">
-                <div class="card-body p-sm-5 mb-xxl-0 me-xxl-5 ms-xxl-5" style="padding: 48px;padding-right: 0px;margin: 28px;margin-right: -4px;padding-bottom: 178px;margin-bottom: 0px;width: 772.8px;transform: translateX(-179px) translateY(-133px);height: 434.4px;">
-                    <h2 class="font-monospace fw-bold mb-2" style="color: rgb(248,249,250);transform: translateX(33px) translateY(41px);letter-spacing: 0px;">Reach me out</h2>
-                    <p class="font-monospace mb-0" style="color: rgb(248,249,250);transform: translateX(33px) translateY(36px);">for collaborations</p>
-                    <form method="post" class="me-xxl-0" style="width: 660.8px;transform: translateX(33px) translateY(53px);">
-                        <div class="mb-3"><input class="form-control" type="text" id="name-2" name="name" placeholder="Name" style="width: 325px;--bs-body-bg: #ffffff;background: var(--bs-card-cap-bg);color: var(--bs-gray-500);--bs-primary: #fcbd30;--bs-primary-rgb: 252,189,48;border-color: var(--bs-gray-dark);"></div>
-                        <div class="mb-3"><input class="form-control" type="email" id="email-2" name="email" placeholder="Email" style="width: 325px;transform: translateX(334px) translateY(-54px);background: var(--bs-card-cap-bg);color: var(--bs-gray-500);--bs-primary: #fcbd30;--bs-primary-rgb: 252,189,48;border-color: var(--bs-gray-dark);"></div>
-                        <div class="mb-3"><textarea class="form-control" id="message-2" name="message" rows="6" placeholder="Message" style="transform: translateY(-62px);height: 88px;background: var(--bs-card-cap-bg);color: var(--bs-gray-500);--bs-primary: #fcbd30;--bs-primary-rgb: 252,189,48;border-color: var(--bs-gray-dark);"></textarea></div>
-                        <div><button class="btn btn-primary font-monospace d-block w-100" type="submit" style="transform: translateY(-61px);background: var(--bs-black);border-width: 2px;border-color: rgb(252,189,48);font-size: 20px;">Send </button></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Animated-Typing-With-Blinking.js"></script>
+    <div class="donut">
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+
+  <script>
+    var A = 0, B = 0, i, j, z = new Array(1760).fill(0), b = new Array(1760).fill(' ');
+    var output = document.getElementById('output');
+    var replacedCharIndexes = [];
+
+    function render() {
+        b.fill(' ');
+        z.fill(0);
+        var k;
+        for(j = 0; 6.28 > j; j += 0.07)
+            for(i = 0; 6.28 > i; i += 0.02) {
+                var c = Math.sin(i),
+                    d = Math.cos(j),
+                    e = Math.sin(A),
+                    f = Math.sin(j),
+                    g = Math.cos(A),
+                    h = d + 2,
+                    D = 1 / (c * h * e + f * g + 5),
+                    l = Math.cos(i),
+                    m = Math.cos(B),
+                    n = Math.sin(B),
+                    t = c * h * g - f * e;
+                var x = 0 | (40 + 30 * D * (l * h * m - t * n)),
+                    y = 0 | (12 + 15 * D * (l * h * n + t * m)),
+                    o = x + 80 * y,
+                    N = 0 | (8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n));
+                if (y < 22 && y > 0 && x > 0 && 80 > x && D > z[o]) {
+                    z[o] = D;
+                    b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+                }
+            }
+        for (k = 0; k < 1760; k++)
+            b[k] = (k % 80 ? b[k] : '\n');
+        output.innerText = b.join('');
+        A += 0.04;
+        B += 0.02;
+        requestAnimationFrame(render);
+    }
+
+    render();
+  </script>
 </body>
-
 </html>
