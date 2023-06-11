@@ -1,154 +1,583 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Vlad's Socials</title>
+  <head>
+    <link rel="icon" href="Pancakes.png" type="image/png">
+    <title>Vlad's Socials</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #222222; /* change background to dark grey */
-      color: #ffffff; /* change font color to white */
-      padding: 20px;
+      background-color: #222222;
+      color: #ffffff;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: auto; 
       margin: 0;
       box-sizing: border-box;
       overflow-x: hidden;
-      overflow-y: hidden;
-      flex-direction: column; /* Add this to stack elements vertically */
+      flex-direction: column;
     }
-
+  
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column; /* Stack elements vertically on all screen sizes */
+      flex-direction: column;
+      padding-top: 2vh; /* control top space using padding on container */
+      padding-bottom: 1vh; /* control bottom space using padding on container */
     }
-
+    html, body {
+      overflow-x: hidden;
+    }
     .socials {
       z-index: 1;
       text-align: center;
-      width: 100%; /* Change width to 100% for full width on mobile */
+      width: 100%;
+      margin-bottom: 20px;
     }
-
+  
     .donut {
-      width: 100%; /* Change width to 100% for full width on mobile */
-      transform: translate(0%, 0%); /* Remove translate */
-      margin-top: 20px; /* Add some margin at the top */
+      width: 100%;
+      margin-top: 20px;
     }
-    @media (min-width: 768px) {
+  
+    @media (max-width: 767px) {
       body {
-        flex-direction: row; /* Make body layout horizontal again */
-        overflow-y: visible;
+        margin-bottom: 5vh; /* Adjust as necessary */
+        margin-top: 5vh; /* Adjust as necessary */
       }
-
-      .container {
-        flex-direction: row; /* Make container layout horizontal again */
-      }
-
+    }
+  
+    @media (min-width: 768px) {
+          body {
+              height: 100vh; /* Full screen height */
+              display: flex;
+              flex-direction: column;
+              justify-content: center; /* This will center the content vertically */
+              align-items: center;
+          }
+          .container {
+              flex-direction: row; /* You already had this */
+          }
       .socials {
-        width: 40%; /* Back to 40% */
+        width: 40%;
         margin-right: 50px;
         transform: translate(0%, 5%);
       }
-
+  
       .donut {
-        width: 40%; /* Back to 40% */
+        width: 40%;
         transform: translate(-40%, 0%);
-        margin-top: 0; /* Remove top margin */
+        margin-top: 0;
       }
     }
-    h1 {
-      color: #ffffff; /* change font color to white */
+  @media (max-width: 767px) {
+    #first-child {
+      margin-top: auto;
     }
-
+  }
+  
+  
+    h1 {
+      color: #ffffff;
+    }
+  
     ul {
       list-style-type: none;
       padding: 0;
     }
-
+  
     li {
       margin: 10px 0;
     }
-
+  
     a {
-      color: #0066C0; /* change link color to light grey */
+      color: #0066C0;
       text-decoration: none;
     }
-
+  
     a:hover {
-      color: #FF6347; /* change hover color to a slightly darker grey */
+      color: #FF6347;
     }
+   pre {
+      display: inline-block;
+  }
+  canvas {
+    background: #00000000;
+    display: block;
+    position: fixed;
+}
 
-  </style>
-</head>
-<body>
-  <audio id="achievement" src="achievement.mp3"></audio>
-  <div class="container">
-    <div class="socials">
-      <h1>Vlad Teodor Taranu</h1>
-      <ul>
-        <li>Discord: .Vlad#7318</li>
-        <li>GitHub: <a href="https://github.com/VladTaranu" target="_blank">VladTaranu</a></li>
-        <li>Instagram: <a href="https://instagram.com/vladtaranu_" target="_blank">vladtaranu_</a></li>
-        <li>Facebook: <a href="https://www.facebook.com/VladTaranu" target="_blank">Vlad Taranu</a></li>
-        <li>Twitter: <a href="https://twitter.com/VladTaranu_" target="_blank">VladTaranu_</a></li>
-        <li>Spotify: <a href="https://open.spotify.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
-        <li>YouTube: <a href="https://www.youtube.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
-        <li>PayPal: <a href="https://www.paypal.me/VladTaranu" target="_blank">Vlad Taranu</a></li>
-        <li>Email: <a href="mailto:taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
-        <li>Tel: <a href="tel:+40744292027">+40(744)292027</a></li>
-        <li><a href="#" onclick="">🥞</a></li> <!-- Add onclick event -->
-      </ul>
-    </div>
+      #pong {
+  z-index: -1;
+}
+.invisible
+{
+  opacity: 0;
+}
+  @media (max-width: 767px) {
+      body {
+          margin-top: 5vh; 
+          margin-bottom: 2vh; 
+      }
+      hidden {
+        display: none;
+      }
+      canvas
+      {
+        display: none;
+      }
+  }
+  
+  @media (min-width: 768px) {
+      body {
+          margin-top: 0; 
+          margin-bottom: 0; 
+      }
+  }
 
-    <div class="donut">
-      <pre id="output"></pre>
-    </div>
-  </div>
+    </style>
+<audio id="paddleSound" src="bounce.wav"></audio>
+<audio id="gameOverSound" src="death.wav"></audio>
+<audio id="giftSound" src="gift.wav"></audio>
+<audio id="achievementSound" src="achievement.mp3"></audio>
+
+  </head>
+  <body>
+    <div class="container">
+      <div id="first-child" class="socials">
+           <h1>Vlad Teodor Taranu</h1>
+           <ul>
+             <li>Discord: .Vlad#7318</li>
+             <li>GitHub: <a href="https://github.com/VladTaranu" target="_blank">VladTaranu</a></li>
+             <li>Instagram: <a href="https://instagram.com/vladtaranu_" target="_blank">vladtaranu_</a></li>
+             <li>Facebook: <a href="https://www.facebook.com/VladTaranu" target="_blank">Vlad Taranu</a></li>
+             <li>Twitter: <a href="https://twitter.com/VladTaranu_" target="_blank">VladTaranu_</a></li>
+             <li>Spotify: <a href="https://open.spotify.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
+             <li>YouTube: <a href="https://www.youtube.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
+             <li>PayPal: <a href="https://www.paypal.me/VladTaranu" target="_blank">Vlad Taranu</a></li>
+             <li>Email: <a href="taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
+             <li>Tel: <a href="tel:+40744292027">+40(744)292027</a></li>
+             <li><a class="invisible" onclick="click()">🥞</a></li> <!-- Add onclick event -->
+           </ul>
+         </div>
+     
+         <div class="donut">
+           <pre id="output"></pre>
+         </div>
+       </div>
+    <canvas id="pong"></canvas>
+
+    <script>
+      window.addEventListener("keydown", function(event) {
+    // Arrow keys
+    if(["ArrowUp","ArrowDown"].includes(event.key)) {
+        event.preventDefault();
+    }
+}, false);
+
+      var A = 0, B = 0, i, j, z = new Array(1760).fill(0), b = new Array(1760).fill(' ');
+      var output = document.getElementById('output');
+      var replacedCharIndexes = [];
+  
+      function render() {
+          b.fill(' ');
+          z.fill(0);
+          var k;
+          for(j = 0; 6.28 > j; j += 0.07)
+              for(i = 0; 6.28 > i; i += 0.02) {
+                  var c = Math.sin(i),
+                      d = Math.cos(j),
+                      e = Math.sin(A),
+                      f = Math.sin(j),
+                      g = Math.cos(A),
+                      h = d + 2,
+                      D = 1 / (c * h * e + f * g + 5),
+                      l = Math.cos(i),
+                      m = Math.cos(B),
+                      n = Math.sin(B),
+                      t = c * h * g - f * e;
+                  var x = 0 | (40 + 30 * D * (l * h * m - t * n)),
+                      y = 0 | (12 + 15 * D * (l * h * n + t * m)),
+                      o = x + 80 * y,
+                      N = 0 | (8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n));
+                  if (y < 22 && y > 0 && x > 0 && 80 > x && D > z[o]) {
+                      z[o] = D;
+                      b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+                  }
+              }
+          for (k = 0; k < 1760; k++)
+              b[k] = (k % 80 ? b[k] : '\n');
+          output.innerText = b.join('');
+          A += 0.04;
+          B += 0.02;
+          requestAnimationFrame(render);
+      }
+  
+      render();
+
+        const pancakeEmoji = document.querySelector("li:last-child a");
+        const pancakeEmojiRect = pancakeEmoji.getBoundingClientRect();
+        const pancakeEmojiX = pancakeEmojiRect.left + window.scrollX;
+        const pancakeEmojiY = pancakeEmojiRect.top + window.scrollY;
+
+        const canvas = document.getElementById("pong");
+        const context = canvas.getContext("2d");
+      
+        // Set the canvas dimensions
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      
+        // Calculate paddle speeds based on canvas dimensions
+        const paddleWidth = 10;
+        const paddleHeight = canvas.height / 6;
+        const paddleSpace = 20;
+      
+        // Define gameOver variable
+        let gameOver = false;
+      
+        const player = {
+          x: paddleSpace,
+          y: canvas.height / 2 - paddleHeight / 2,
+          width: paddleWidth,
+          height: 0,
+          dy: (canvas.height / 120) * 1.5,
+          wy: (canvas.height / 120) * 0.5,
+          maxHeight: canvas.height / 6,
+          color: "#fff",
+          upPressed: false,
+          downPressed: false,
+        };
+      
+        const computer = {
+          x: canvas.width - paddleWidth - paddleSpace,
+          y: canvas.height / 2 - paddleHeight / 2,
+          width: paddleWidth,
+          height: 0,
+          dy: (canvas.height / 120) * 1.5,
+          wy: (canvas.height / 120) * 0.5,
+          maxHeight: canvas.height / 6,
+          color: "#fff",
+        };
+      
+        // Load the image
+        const imagePancake = new Image();
+  imagePancake.src = "Pancakes.png";
+  const imageGift = new Image();
+  imageGift.src = "Gift.png";
+  const squareSize = canvas.height / 30;
+
+  const initialBallX = pancakeEmojiX;
+const initialBallY = pancakeEmojiY;
 
 
-  <script>
-    var A = 0, B = 0, i, j, z = new Array(1760).fill(0), b = new Array(1760).fill(' ');
-    var output = document.getElementById('output');
-    var replacedCharIndexes = [];
+  const ball = {
+    x: initialBallX,
+    y: initialBallY,
+    initialX: initialBallX,
+    initialY: initialBallY,
+    size: squareSize,
+    speed: canvas.height / 240,
+    dx: canvas.height / 240,
+    dy: canvas.height / -240,
+    image: imagePancake,
+    growthSpeed: 0.2,
+    maxSize: squareSize * 2,
+    growing: false,
+    speedIncreaseFactor: 0.001,
+    lastDx: null,
+    lastDy: null,
+  };
+  function playPaddleSound() {
+  const paddleSound = document.getElementById("paddleSound");
+  paddleSound.play();
+}
 
-    function render() {
-        b.fill(' ');
-        z.fill(0);
-        var k;
-        for(j = 0; 6.28 > j; j += 0.07)
-            for(i = 0; 6.28 > i; i += 0.02) {
-                var c = Math.sin(i),
-                    d = Math.cos(j),
-                    e = Math.sin(A),
-                    f = Math.sin(j),
-                    g = Math.cos(A),
-                    h = d + 2,
-                    D = 1 / (c * h * e + f * g + 5),
-                    l = Math.cos(i),
-                    m = Math.cos(B),
-                    n = Math.sin(B),
-                    t = c * h * g - f * e;
-                var x = 0 | (40 + 30 * D * (l * h * m - t * n)),
-                    y = 0 | (12 + 15 * D * (l * h * n + t * m)),
-                    o = x + 80 * y,
-                    N = 0 | (8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n));
-                if (y < 22 && y > 0 && x > 0 && 80 > x && D > z[o]) {
-                    z[o] = D;
-                    b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
-                }
+function playGameOverSound() {
+  const gameOverSound = document.getElementById("gameOverSound");
+  gameOverSound.play();
+}
+function playGiftSound() {
+  const gameOverSound = document.getElementById("giftSound");
+  gameOverSound.play();
+}
+
+function playAchievementSound() {
+  const gameOverSound = document.getElementById("achievementSound");
+  gameOverSound.play();
+}
+
+
+        let gameStarted = false;
+      
+        // Draw the paddles
+        function drawPaddle(x, y, width, height, color) {
+          context.fillStyle = color;
+          context.fillRect(x, y, width, height);
+        }
+      
+        // Draw the image
+        function drawImage(x, y, image) {
+          context.drawImage(image, x, y, ball.size, ball.size);
+        }
+
+
+        // Update the canvas
+        function update() {
+          // Clear the canvas
+          context.clearRect(0, 0, canvas.width, canvas.height);
+      
+          // Draw the paddles
+          drawPaddle(player.x, player.y, player.width, player.height, player.color);
+          drawPaddle(
+            computer.x,
+            computer.y,
+            computer.width,
+            computer.height,
+            computer.color
+          );
+          function resetBall() {
+  var intervalId = setInterval(function() {
+    ball.x += (ball.initialX - ball.x) * 0.005;
+    ball.y += (ball.initialY - ball.y) * 0.005;
+
+    // When ball is near to the initial position, set its exact initial position
+    if (Math.abs(ball.x - ball.initialX) < 1 &&
+        Math.abs(ball.y - ball.initialY) < 1) {
+      ball.x = ball.initialX;
+      ball.y = ball.initialY;
+      clearInterval(intervalId); // Stop the interval
+    }
+  }, 10);
+}
+
+
+
+// Inside your update function, where you handle game over scenario:
+
+if (gameOver) {
+    if (ball.image === imagePancake) {
+        playGameOverSound(); // Added this line
+
+        } else {
+            playAchievementSound(); // Added this line
+
+        }
+  resetBall();
+}
+
+
+          if (gameStarted && ball.growing && ball.size < ball.maxSize) {
+            ball.size += ball.growthSpeed;
+            if (ball.size >= ball.maxSize) {
+              ball.growing = false;
             }
-        for (k = 0; k < 1760; k++)
-            b[k] = (k % 80 ? b[k] : '\n');
-        output.innerText = b.join('');
-        A += 0.04;
-        B += 0.02;
-        requestAnimationFrame(render);
+          }
+          if(!gameStarted)
+          {
+            canvas.style.zIndex = "-1";
+          }
+          if (gameStarted) {
+            canvas.style.zIndex = "1";
+            if (!gameOver) {
+              if (player.height < player.maxHeight) {
+                player.height += player.wy;
+                player.y -= player.wy / 2;
+              }
+              if (computer.height < computer.maxHeight) {
+                computer.height += computer.wy;
+                computer.y -= computer.wy / 2;
+              }
+      
+              if (player.upPressed && player.y > paddleSpace) {
+                player.y = Math.max(paddleSpace, player.y - player.dy);
+              }
+              if (player.downPressed && player.y + player.height < canvas.height - paddleSpace) {
+                player.y = Math.min(canvas.height - paddleSpace - player.height, player.y + player.dy);
+              }
+      
+              if (
+                computer.y + computer.height / 2 < ball.y &&
+                computer.y + computer.height < canvas.height - paddleSpace
+              ) {
+                computer.y += computer.dy;
+              } else if (
+                computer.y + computer.height / 2 > ball.y &&
+                computer.y > paddleSpace
+              ) {
+                computer.y -= computer.dy;
+              }
+      
+              ball.x += ball.dx;
+              ball.y += ball.dy;
+      
+              ball.dx += ball.dx > 0 ? ball.speedIncreaseFactor : -ball.speedIncreaseFactor;
+              ball.dy += ball.dy > 0 ? ball.speedIncreaseFactor : -ball.speedIncreaseFactor;
+      
+              if (
+                ball.y + ball.size > player.y &&
+                ball.y < player.y + player.height &&
+                ball.dx < 0
+              ) {
+                if (ball.x - ball.dx < player.x + player.width) {
+                  ball.dx = -ball.dx;
+                  playPaddleSound(); // Added this line
+                }
+              }
+      
+              if (
+                ball.y + ball.size > computer.y &&
+                ball.y < computer.y + computer.height &&
+                ball.dx > 0
+            ) {
+            if (ball.x + ball.size + ball.dx > computer.x) {
+                ball.dx = -ball.dx;
+                // Changes the ball's image to 'gift.png' with a 20% chance
+                if(Math.random() <= 0.05){
+                    ball.image = imageGift;
+                    playGiftSound();
+                }
+            else
+            {
+                playPaddleSound(); // Added this line
+                ball.image = imagePancake;
+            }
     }
+}
 
-    render();
-  </script>
-</body>
+
+if (ball.x + ball.size > canvas.width && !gameOver) {
+    gameOver = true;
+    ball.dx = -ball.dx;
+    ball.dy = -ball.dy;
+}
+
+
+      
+              if (ball.y + ball.size > canvas.height || ball.y < 0) {
+                ball.dy = -ball.dy;
+              }
+      
+              if ((ball.x + ball.size > canvas.width || ball.x < 0) && !gameOver) {
+                gameOver = true;
+                ball.dx = -ball.dx;
+                ball.dy = -ball.dy;
+              }
+            } else {
+              if (player.height > 0) {
+                player.height -= player.wy;
+                player.y += player.wy / 2;
+              }
+              if (computer.height > 0) {
+                computer.height -= computer.wy;
+                computer.y += computer.wy / 2;
+              }
+              if (ball.size > squareSize) {
+                ball.size -= ball.growthSpeed;
+              } else {
+                gameOver = false;
+                gameStarted = false;
+              }
+            }
+          }
+      
+          drawImage(ball.x, ball.y, ball.image);
+          requestAnimationFrame(update);
+        }
+      
+        // Keyboard controls
+        document.addEventListener("keydown", function (event) {
+          if (event.keyCode === 38) {
+            player.upPressed = true;
+          }
+          if (event.keyCode === 40) {
+            player.downPressed = true;
+          }
+        });
+      
+        document.addEventListener("keyup", function (event) {
+          if (event.keyCode === 38) {
+            player.upPressed = false;
+          }
+          if (event.keyCode === 40) {
+            player.downPressed = false;
+          }
+        });
+        function click() {
+        console.log("Invisible element clicked!");
+
+        let canvas = document.getElementById("pong");
+        let event = new MouseEvent('click', {
+            'clientX': 100,  // static X coordinate
+            'clientY': 100   // static Y coordinate
+        });
+        canvas.dispatchEvent(event);
+    }
+        canvas.addEventListener("click", function (event) {
+
+});
+document.querySelector(".invisible").addEventListener("click", function(event) {
+  const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Check if the click was on the pancake/gift
+    if (
+        x >= ball.x &&
+        x <= ball.x + ball.size &&
+        y >= ball.y &&
+        y <= ball.y + ball.size
+    ) {
+        if (!gameOver && ball.image === imagePancake) {
+            ball.growing = true;
+            gameStarted = true; 
+        } else {
+            console.log("Gift clicked!");
+            downloadTextFile();
+        }
+    }
+});
+let firstDownload = true;
+
+function downloadTextFile() {
+  // Predefined filenames and text contents
+  const firstDownloadFilename = 'Reward.txt';
+  const firstDownloadText = 'Congrats! You found the sacred pancakes. 🥞';
+
+  const secondDownloadFilename = 'Uh...txt';
+  const secondDownloadText = 'No more pancakes for you.';
+
+  // Create a new <a> element
+  const element = document.createElement('a');
+
+  // Check if it's the first download
+  if (firstDownload) {
+    // Set the href attribute to a data URL containing the first file's text content
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(firstDownloadText));
+    // Set the download attribute with the first filename
+    element.setAttribute('download', firstDownloadFilename);
+    // Set the flag to indicate the first download
+    firstDownload = false;
+  } else {
+    // Set the href attribute to a data URL containing the second file's text content
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(secondDownloadText));
+    // Set the download attribute with the second filename
+    element.setAttribute('download', secondDownloadFilename);
+  }
+
+  // Add the element to the document body (required for Firefox)
+  document.body.appendChild(element);
+
+  // Programmatically trigger a click event on the element
+  element.click();
+
+  // Remove the element from the document body
+  document.body.removeChild(element);
+}
+        // Start the game loop
+        update();
+      </script>
+      
+  </body>
 </html>
