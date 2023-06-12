@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="Pancakes.png" type="image/png">
     <title>Vlad's Socials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -138,7 +139,46 @@
           margin-bottom: 0; 
       }
   }
+  .cursor {
+  display: inline-block;
+  width: 20px; 
+  height: 32px; 
+  background-color: #ffffff; 
+  transform: translate(3px, 4px);
+  animation: cursor 1s steps(1) infinite;
+}
 
+@keyframes cursor {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.copy-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    vertical-align: middle;
+    transform: translate(0px, -1.5px);
+  }
+  .discord-name {
+  color: #0066C0; /* Set the desired color */
+  cursor: pointer;
+}
+
+.discord-name:hover {
+  color: #FF6347; /* Set the desired hover color */
+}
+
+  .copied-icon {
+    content: url(check.png); /* Replace with the path to your checkmark icon */
+  }
     </style>
 <audio id="paddleSound" src="bounce.wav"></audio>
 <audio id="gameOverSound" src="death.wav"></audio>
@@ -148,18 +188,18 @@
   </head>
   <body>
     <div class="container">
-      <div id="first-child" class="socials">
-           <h1>Vlad Teodor Taranu</h1>
-           <ul>
-             <li>Discord: .Vlad#7318</li>
-             <li>GitHub: <a href="https://github.com/VladTaranu" target="_blank">VladTaranu</a></li>
+      <div id="first-child" class="socials" style="width: 320px;">
+        <h1><span class="typewriter">Vlad Teodor Taranu</span></h1>
+        <ul>
+          <li>Discord: <span id="discord-name" class="discord-name">.Vlad#7318</span> <img class="copy-icon" src="clipboard.png" alt="Copy Icon"></li>
+          <li>GitHub: <a href="https://github.com/VladTaranu" target="_blank">VladTaranu</a></li>
              <li>Instagram: <a href="https://instagram.com/vladtaranu_" target="_blank">vladtaranu_</a></li>
-             <li>Facebook: <a href="https://www.facebook.com/VladTaranu" target="_blank">Vlad Taranu</a></li>
+             <li>Facebook: <a href="https://www.facebook.com/vladtaranu07" target="_blank">Vlad Taranu</a></li>
              <li>Twitter: <a href="https://twitter.com/VladTaranu_" target="_blank">VladTaranu_</a></li>
-             <li>Spotify: <a href="https://open.spotify.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
-             <li>YouTube: <a href="https://www.youtube.com/user/VladTaranu" target="_blank">Vlad Taranu</a></li>
-             <li>PayPal: <a href="https://www.paypal.me/VladTaranu" target="_blank">Vlad Taranu</a></li>
-             <li>Email: <a href="taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
+             <li>Spotify: <a href="https://open.spotify.com/user/31pzqtsxn3lbga4m4zpzb2rhhb6i?si=f066a2e79429460e" target="_blank">Vlad Taranu</a></li>
+             <li>YouTube: <a href="https://www.youtube.com/@vladtaranu_" target="_blank">Vlad Taranu</a></li>
+             <li>PayPal: <a href="https://paypal.me/SharpBlade0?country.x=RO&locale.x=en_US" target="_blank">Vlad Taranu</a></li>
+             <li>Email: <a href="mailto:taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
              <li>Tel: <a href="tel:+40744292027">+40(744)292027</a></li>
              <li><a class="invisible" onclick="click()">🥞</a></li> <!-- Add onclick event -->
            </ul>
@@ -172,6 +212,60 @@
     <canvas id="pong"></canvas>
 
     <script>
+  // Function to handle the copy action
+  function copyToClipboard(text) {
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  }
+
+  // Event listener for copy icon click
+// Event listener for Discord name click
+document.addEventListener('DOMContentLoaded', function() {
+  const discordName = document.querySelector('#discord-name');
+  const copyIcon = discordName.nextElementSibling;
+  const discordNameText = discordName.textContent.trim();
+  
+  discordName.addEventListener('click', function() {
+    copyToClipboard(discordNameText);
+    copyIcon.classList.add('copied-icon');
+    setTimeout(function() {
+      copyIcon.classList.remove('copied-icon');
+    }, 2000); // Change the duration (in milliseconds) as per your preference
+  });
+});
+window.addEventListener('DOMContentLoaded', (event) => {
+    const typewriter = document.querySelector('.typewriter');
+    typewriter.textContent = '';
+
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    cursor.style.animation = 'none'; // initially, no animation
+    typewriter.appendChild(cursor);
+
+    const text = "Vlad Teodor Taranu";
+    let index = 0;
+
+    function typeNextLetter() {
+        // Insert new character before cursor
+        cursor.before(text[index]);
+        index++;
+
+        if (index < text.length) {
+            setTimeout(typeNextLetter, 100);
+        } else {
+            cursor.style.animation = 'cursor 1s steps(1) infinite'; // typing is done, start blinking
+        }
+    }
+
+    typeNextLetter();
+});
+
+
+
       window.addEventListener("keydown", function(event) {
     // Arrow keys
     if(["ArrowUp","ArrowDown"].includes(event.key)) {
@@ -244,7 +338,7 @@
           y: canvas.height / 2 - paddleHeight / 2,
           width: paddleWidth,
           height: 0,
-          dy: (canvas.height / 120) * 1.5,
+          dy: (canvas.height / 120) * 3,
           wy: (canvas.height / 120) * 0.5,
           maxHeight: canvas.height / 6,
           color: "#fff",
@@ -257,7 +351,7 @@
           y: canvas.height / 2 - paddleHeight / 2,
           width: paddleWidth,
           height: 0,
-          dy: (canvas.height / 120) * 1.5,
+          dy: (canvas.height / 120) * 3,
           wy: (canvas.height / 120) * 0.5,
           maxHeight: canvas.height / 6,
           color: "#fff",
@@ -280,9 +374,9 @@ const initialBallY = pancakeEmojiY;
     initialX: initialBallX,
     initialY: initialBallY,
     size: squareSize,
-    speed: canvas.height / 240,
-    dx: canvas.height / 240,
-    dy: canvas.height / -240,
+    speed: canvas.height / 60,
+    dx: canvas.height / 60,
+    dy: canvas.height / -60,
     image: imagePancake,
     growthSpeed: 0.2,
     maxSize: squareSize * 2,
@@ -323,14 +417,21 @@ function playAchievementSound() {
         function drawImage(x, y, image) {
           context.drawImage(image, x, y, ball.size, ball.size);
         }
+let lastFrameTimeMs = 0;
+let maxFPS = 60; // This value represents the "base" framerate that your game was designed for
 
 
         // Update the canvas
-        function update() {
+        function update(timestamp) {
+    let deltaTime = timestamp - lastFrameTimeMs;
+    lastFrameTimeMs = timestamp;
+    let dtFactor = maxFPS / (1000/deltaTime);
+
           // Clear the canvas
           context.clearRect(0, 0, canvas.width, canvas.height);
       
           // Draw the paddles
+          if (player.height > 0) {
           drawPaddle(player.x, player.y, player.width, player.height, player.color);
           drawPaddle(
             computer.x,
@@ -338,7 +439,7 @@ function playAchievementSound() {
             computer.width,
             computer.height,
             computer.color
-          );
+          );}
           function resetBall() {
   var intervalId = setInterval(function() {
     ball.x += (ball.initialX - ball.x) * 0.005;
@@ -393,61 +494,62 @@ if (gameOver) {
               }
       
               if (player.upPressed && player.y > paddleSpace) {
-                player.y = Math.max(paddleSpace, player.y - player.dy);
-              }
-              if (player.downPressed && player.y + player.height < canvas.height - paddleSpace) {
-                player.y = Math.min(canvas.height - paddleSpace - player.height, player.y + player.dy);
-              }
-      
-              if (
-                computer.y + computer.height / 2 < ball.y &&
-                computer.y + computer.height < canvas.height - paddleSpace
-              ) {
-                computer.y += computer.dy;
-              } else if (
-                computer.y + computer.height / 2 > ball.y &&
-                computer.y > paddleSpace
-              ) {
-                computer.y -= computer.dy;
-              }
-      
-              ball.x += ball.dx;
-              ball.y += ball.dy;
-      
-              ball.dx += ball.dx > 0 ? ball.speedIncreaseFactor : -ball.speedIncreaseFactor;
-              ball.dy += ball.dy > 0 ? ball.speedIncreaseFactor : -ball.speedIncreaseFactor;
-      
-              if (
-                ball.y + ball.size > player.y &&
-                ball.y < player.y + player.height &&
-                ball.dx < 0
-              ) {
-                if (ball.x - ball.dx < player.x + player.width) {
-                  ball.dx = -ball.dx;
-                  playPaddleSound(); // Added this line
-                }
-              }
-      
-              if (
-                ball.y + ball.size > computer.y &&
-                ball.y < computer.y + computer.height &&
-                ball.dx > 0
-            ) {
-            if (ball.x + ball.size + ball.dx > computer.x) {
-                ball.dx = -ball.dx;
-                // Changes the ball's image to 'gift.png' with a 20% chance
-                if(Math.random() <= 0.05){
-                    ball.image = imageGift;
-                    playGiftSound();
-                }
-            else
-            {
-                playPaddleSound(); // Added this line
-                ball.image = imagePancake;
-            }
+    player.y = Math.max(paddleSpace, player.y - player.dy * dtFactor);
+}
+if (player.downPressed && player.y + player.height < canvas.height - paddleSpace) {
+    player.y = Math.min(canvas.height - paddleSpace - player.height, player.y + player.dy * dtFactor);
+}
+
+if (
+    computer.y + computer.height / 2 < ball.y &&
+    computer.y + computer.height < canvas.height - paddleSpace
+) {
+    computer.y += computer.dy * dtFactor;
+} else if (
+    computer.y + computer.height / 2 > ball.y &&
+    computer.y > paddleSpace
+) {
+    computer.y -= computer.dy * dtFactor;
+}
+
+ball.x += ball.dx * dtFactor;
+ball.y += ball.dy * dtFactor;
+
+ball.dx += ball.dx > 0 ? ball.speedIncreaseFactor * dtFactor : -ball.speedIncreaseFactor * dtFactor;
+ball.dy += ball.dy > 0 ? ball.speedIncreaseFactor * dtFactor : -ball.speedIncreaseFactor * dtFactor;
+if (
+    ball.y + ball.size > player.y &&
+    ball.y < player.y + player.height &&
+    ball.dx < 0 &&
+    ball.x - ball.dx < player.x + player.width
+) {
+    if (ball.x < player.x + player.width) {
+        ball.dx = -ball.dx;
+        ball.x = player.x + player.width;  // added this line to adjust the ball's position
+        playPaddleSound();
     }
 }
 
+if (
+    ball.y + ball.size > computer.y &&
+    ball.y < computer.y + computer.height &&
+    ball.dx > 0 &&
+    ball.x + ball.size + ball.dx > computer.x
+) {
+    if (ball.x + ball.size > computer.x) {
+        ball.dx = -ball.dx;
+        ball.x = computer.x - ball.size;  // added this line to adjust the ball's position
+        if(Math.random() <= 0.05){
+            ball.image = imageGift;
+            playGiftSound();
+        }
+        else
+        {
+            playPaddleSound();
+            ball.image = imagePancake;
+        }
+    }
+}
 
 if (ball.x + ball.size > canvas.width && !gameOver) {
     gameOver = true;
@@ -457,9 +559,14 @@ if (ball.x + ball.size > canvas.width && !gameOver) {
 
 
       
-              if (ball.y + ball.size > canvas.height || ball.y < 0) {
-                ball.dy = -ball.dy;
-              }
+if (ball.y + ball.size > canvas.height) {
+    ball.dy = -ball.dy;
+    ball.y = canvas.height - ball.size; // Move the ball back inside the screen
+} else if (ball.y < 0) {
+    ball.dy = -ball.dy;
+    ball.y = 0; // Move the ball back inside the screen
+}
+
       
               if ((ball.x + ball.size > canvas.width || ball.x < 0) && !gameOver) {
                 gameOver = true;
@@ -577,6 +684,7 @@ function downloadTextFile() {
   // Remove the element from the document body
   document.body.removeChild(element);
 }
+
         // Start the game loop
         update();
       </script>
