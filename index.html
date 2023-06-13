@@ -188,7 +188,7 @@
   </head>
   <body>
     <div class="container">
-      <div id="first-child" class="socials" style="width: 320px;">
+      <div id="first-child" class="socials" style="width: 340px;">
         <h1><span class="typewriter">Vlad Teodor Taranu</span></h1>
         <ul>
           <li>Discord: <span id="discord-name" class="discord-name">.Vlad#7318</span> <img class="copy-icon" src="clipboard.png" alt="Copy Icon"></li>
@@ -201,7 +201,7 @@
              <li>PayPal: <a href="https://paypal.me/SharpBlade0?country.x=RO&locale.x=en_US" target="_blank">Vlad Taranu</a></li>
              <li>Email: <a href="mailto:taranuvlad07@gmail.com">taranuvlad07@gmail.com</a></li>
              <li>Tel: <a href="tel:+40744292027">+40(744)292027</a></li>
-             <li><a class="invisible" onclick="click()">🥞</a></li> <!-- Add onclick event -->
+             <li><a class="invisible" onclick="click()">🥞</a></li>
            </ul>
          </div>
      
@@ -212,56 +212,209 @@
     <canvas id="pong"></canvas>
 
     <script>
-  // Function to handle the copy action
-  function copyToClipboard(text) {
-    const el = document.createElement('textarea');
-    el.value = text;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
+// Function to handle the copy action
+function copyToClipboard(text) {
+  const el = document.createElement('textarea');
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+let text = "Vlad Teodor Taranu";
+let chars = [];
+let erasing = false;
+let typing = false;
+let newTextAfterErase = null;
+let activeTimeout = null;
+let updatingScore = false; // New variable to track if we are updating score
+
+function typeNextLetter() {
+  if (typing) {
+    clearTimeout(activeTimeout);
+
+    if (chars.length < text.length) {
+      let span = document.createElement('span');
+      span.textContent = text[chars.length];
+      typewriter.insertBefore(span, cursor);
+      chars.push(span);
+      cursor.style.animation = 'none';
+      activeTimeout = setTimeout(typeNextLetter, 100);
+    } else {
+      cursor.style.animation = 'cursor 1s steps(1) infinite';
+      typing = false;
+
+      if (updatingScore) { // We have finished updating score
+        updatingScore = false;
+      }
+    
+      if (newTextAfterErase) {
+        text = newTextAfterErase;
+        newTextAfterErase = null;
+        erasing = true;
+        eraseNextLetter();
+      }
+    }
+  }
+}
+
+function eraseNextLetter() {
+  if (erasing) {
+    clearTimeout(activeTimeout);
+
+    if (chars.length > 0) {
+      let lastChar = chars.pop();
+      typewriter.removeChild(lastChar);
+      cursor.style.animation = 'none';
+      activeTimeout = setTimeout(eraseNextLetter, 100);
+    } else {
+      cursor.style.animation = 'cursor 1s steps(1) infinite';
+      erasing = false;
+      if (newTextAfterErase) {
+        text = newTextAfterErase;
+        newTextAfterErase = null;
+        typing = true;
+        typeNextLetter();
+      }
+    }
+  }
+}
+
+function resetTypewriter(newText) {
+  // If we are updating score, queue the new text and return
+  if (updatingScore) {
+    newTextAfterErase = newText;
+    return;
   }
 
-  // Event listener for copy icon click
-// Event listener for Discord name click
+  if (typing || erasing) {
+    typing = false;
+    erasing = false;
+    clearTimeout(activeTimeout);
+  }
+
+  while (chars.length > 0) {
+    let lastChar = chars.pop();
+    typewriter.removeChild(lastChar);
+  }
+
+  text = newText;
+  cursor.style.animation = 'none';
+  typing = true;
+  typeNextLetter();
+}
+
+
+function longestCommonPrefix(str1, str2) {
+  let i = 0;
+  while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+    i++;
+  }
+  return i;
+}
+
+function resetTypewriter(newText) {
+  const commonPrefixLength = 0; // Always clear existing text
+  newTextAfterErase = newText.slice(commonPrefixLength);
+  if (chars.length > commonPrefixLength) {
+    erasing = true;
+    eraseNextLetter(commonPrefixLength);
+  } else {
+    text = newText;
+    if (!typing) {
+      typing = true;
+      typeNextLetter();
+    }
+  }
+}
+function changePrefix(newPrefix) {
+  const prefixLength = 6;
+  text = newPrefix + text.slice(prefixLength);
+  typewriter.textContent = text;
+}
+
+let score = 0;
+function updateScore(newScore) {
+  // Clear all characters after "Score: "
+
+  
+  // Add new score value
+  text = `Score: ${newScore}`;
+  typing = true;
+  typeNextLetter();
+  cursor.style.animation = 'cursor 1s steps(1) infinite';
+}
+
+function displayScore() {
+  if (text.startsWith("Score: "))
+  {
+    while (chars.length > 6) {
+    let lastChar = chars.pop();
+    typewriter.removeChild(lastChar);
+    cursor.style.animation = 'none';
+  }
+  setTimeout(function() {
+      updateScore(score);
+  }, 200); // 3000 milliseconds = 3 seconds
+  }
+  else
+  {
+    resetTypewriter("Score: 0");
+    cursor.style.animation = 'cursor 1s steps(1) infinite';
+  }
+
+}
+
+function displayDefaultText() {
+  if (ball.image == imageGift)
+  {
+    displayCongratulationstText();
+  }
+
+  else
+  {
+    resetTypewriter("Vlad Teodor Taranu");
+  }
+}
+function displayTryAgainText() {
+  score = 0;
+  resetTypewriter("Game Over");
+  setTimeout(function() {
+    displayDefaultText();
+  }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+function displayCongratulationstText() {
+  resetTypewriter("Congratulations");
+}
+window.addEventListener('DOMContentLoaded', (event) => {
+  typewriter = document.querySelector('.typewriter');
+  typewriter.textContent = '';
+
+  cursor = document.createElement('span');
+  cursor.classList.add('cursor');
+  cursor.style.animation = 'none';
+  typewriter.appendChild(cursor);
+
+  typing = true;
+  typeNextLetter();
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   const discordName = document.querySelector('#discord-name');
   const copyIcon = discordName.nextElementSibling;
   const discordNameText = discordName.textContent.trim();
-  
+
   discordName.addEventListener('click', function() {
     copyToClipboard(discordNameText);
     copyIcon.classList.add('copied-icon');
+    resetTypewriter("Copied to Clipboard");
     setTimeout(function() {
+      displayDefaultText();
+      // Remove the copied-icon class to revert back to the original icon
       copyIcon.classList.remove('copied-icon');
-    }, 2000); // Change the duration (in milliseconds) as per your preference
+    }, 5000);
   });
-});
-window.addEventListener('DOMContentLoaded', (event) => {
-    const typewriter = document.querySelector('.typewriter');
-    typewriter.textContent = '';
-
-    const cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    cursor.style.animation = 'none'; // initially, no animation
-    typewriter.appendChild(cursor);
-
-    const text = "Vlad Teodor Taranu";
-    let index = 0;
-
-    function typeNextLetter() {
-        // Insert new character before cursor
-        cursor.before(text[index]);
-        index++;
-
-        if (index < text.length) {
-            setTimeout(typeNextLetter, 100);
-        } else {
-            cursor.style.animation = 'cursor 1s steps(1) infinite'; // typing is done, start blinking
-        }
-    }
-
-    typeNextLetter();
 });
 
 
@@ -344,6 +497,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
           color: "#fff",
           upPressed: false,
           downPressed: false,
+          initialX: paddleSpace,
+  initialY: canvas.height / 2 - paddleHeight / 2,
+  initialDy: (canvas.height / 120) * 3,
         };
       
         const computer = {
@@ -355,6 +511,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
           wy: (canvas.height / 120) * 0.5,
           maxHeight: canvas.height / 6,
           color: "#fff",
+          initialX: canvas.width - paddleWidth - paddleSpace,
+  initialY: canvas.height / 2 - paddleHeight / 2,
+  initialDy: (canvas.height / 120) * 3,
         };
       
         // Load the image
@@ -381,29 +540,62 @@ const initialBallY = pancakeEmojiY;
     growthSpeed: 0.2,
     maxSize: squareSize * 2,
     growing: false,
-    speedIncreaseFactor: 0.001,
+    speedIncreaseFactor: 0.002,
     lastDx: null,
     lastDy: null,
+    initialSpeed: canvas.height / 60,
   };
   function playPaddleSound() {
   const paddleSound = document.getElementById("paddleSound");
   paddleSound.play();
 }
 
-function playGameOverSound() {
-  const gameOverSound = document.getElementById("gameOverSound");
-  gameOverSound.play();
+let deathSoundPlayed = false;
+let achievementSoundPlayed = false;
+function resetGame() {
+  // Reset player paddle
+  player.x = player.initialX;
+  player.y = player.initialY;
+  player.dy = player.initialDy;
+
+  // Reset computer paddle
+  computer.x = computer.initialX;
+  computer.y = computer.initialY;
+  computer.dy = computer.initialDy;
+
+  // Reset ball speed
+  ball.speed = ball.initialSpeed;
+  ball.dx = ball.initialSpeed;
+  ball.dy = -ball.initialSpeed;
+
+  achievementSoundPlayed = false;
+  deathSoundPlayed = false;
+  // Reset game state
+  gameStarted = false;
+  gameOver = false;
 }
+function playGameOverSound() {
+  if (!deathSoundPlayed) {
+    const gameOverSound = document.getElementById("gameOverSound");
+    gameOverSound.play();
+    displayTryAgainText();
+    deathSoundPlayed = true;
+  }
+}
+
+function playAchievementSound() {
+  if (!achievementSoundPlayed) {
+    const achievementSound = document.getElementById("achievementSound");
+    achievementSound.play();
+    achievementSoundPlayed = true;
+    displayCongratulationstText();
+  }
+}
+
 function playGiftSound() {
   const gameOverSound = document.getElementById("giftSound");
   gameOverSound.play();
 }
-
-function playAchievementSound() {
-  const gameOverSound = document.getElementById("achievementSound");
-  gameOverSound.play();
-}
-
 
         let gameStarted = false;
       
@@ -468,6 +660,7 @@ if (gameOver) {
 
         }
   resetBall();
+
 }
 
 
@@ -512,6 +705,8 @@ if (
     computer.y -= computer.dy * dtFactor;
 }
 
+
+
 ball.x += ball.dx * dtFactor;
 ball.y += ball.dy * dtFactor;
 
@@ -527,6 +722,9 @@ if (
         ball.dx = -ball.dx;
         ball.x = player.x + player.width;  // added this line to adjust the ball's position
         playPaddleSound();
+        score++;
+
+          displayScore();
     }
 }
 
@@ -555,6 +753,7 @@ if (ball.x + ball.size > canvas.width && !gameOver) {
     gameOver = true;
     ball.dx = -ball.dx;
     ball.dy = -ball.dy;
+    resetGame();
 }
 
 
@@ -625,8 +824,13 @@ if (ball.y + ball.size > canvas.height) {
     }
         canvas.addEventListener("click", function (event) {
 
+
 });
 document.querySelector(".invisible").addEventListener("click", function(event) {
+  if (ball.image != imageGift)
+        {
+  displayScore();
+        }
   const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
@@ -639,6 +843,7 @@ document.querySelector(".invisible").addEventListener("click", function(event) {
         y <= ball.y + ball.size
     ) {
         if (!gameOver && ball.image === imagePancake) {
+          resetGame();
             ball.growing = true;
             gameStarted = true; 
         } else {
