@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Links</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .social-icons {
+      text-align: center;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 2em;
+      margin: 10px;
+      text-decoration: none;
+      transition: opacity 0.3s ease; /* Added transition for smooth effect */
+    }
+    .social-icons a:hover {
+      opacity: 0.5; /* Reduce opacity on hover */
+    }
+    .discord-name {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="social-icons">
+    <a href="https://github.com/VladTaranu" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="" onclick="copyDiscordUsername(event)"><i class="fab fa-discord"></i></a>
+    <a href="https://instagram.com/vladtaranu_" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/vladtaranu07" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/VladTaranu_" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://open.spotify.com/user/31pzqtsxn3lbga4m4zpzb2rhhb6i?si=f066a2e79429460e" target="_blank"><i class="fab fa-spotify"></i></a>
+    <a href="https://www.youtube.com/@vladtaranu_" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://paypal.me/SharpBlade0?country.x=RO&locale.x=en_US" target="_blank"><i class="fab fa-paypal"></i></a>
+    <a href="mailto:taranuvlad07@gmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="tel:+40744292027"><i class="fas fa-phone"></i></a>    <!-- Other social icons -->
+  </div>
+
+  <script>
+    var isCopying = false; // Flag to track copying state
+
+    function copyDiscordUsername(event) {
+      if (isCopying) return; // If copying is in progress, prevent further clicks
+      event.preventDefault();
+      
+      var discordUsername = "vladtaranu";
+      isCopying = true; // Set flag to indicate copying process is ongoing
+
+      var textarea = document.createElement('textarea');
+      textarea.value = discordUsername;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = 0;
+      document.body.appendChild(textarea);
+
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      var icon = event.currentTarget.querySelector('i');
+      icon.classList.remove('fab', 'fa-discord');
+      icon.classList.add('far', 'fa-copy');
+
+      setTimeout(function() {
+        icon.classList.remove('far', 'fa-copy');
+        icon.classList.add('fab', 'fa-discord');
+        isCopying = false; // Reset the flag after reverting to original state
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
