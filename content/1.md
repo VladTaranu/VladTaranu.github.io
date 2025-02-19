@@ -2,7 +2,7 @@
 title: "1"
 summary: "gg"
 type: "Actiuni"
-date: "1 Ianuarie, 2023"
+date: "2023-01-01"
 cover: "https://img.shields.io/badge/Sponsor_me_on_GitHub-5c5c5c?style=for-the-badge&logo=github&logoColor=white"
 ---
 
