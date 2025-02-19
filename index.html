@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Comunitatea Identitară</title>
+    <link rel="icon" href="https://startbootstrap.github.io/startbootstrap-blog-home/assets/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="./res/styles.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+    <div class="background-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <img src="res/logo.png" alt="Logo" class="logo">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Acțiuni</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Podcast</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Acasă</a></li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <header class="py-5 bg-light mb-4">
+            <div class="container text-center my-5">
+                <h1 class="fw-bolder">Comunitatea Identitara România</h1>
+                <p class="lead mb-0">Organizație naționalistă de tineret. Cea mai autentică, românească și sinceră dintre idei!</p>
+                <div class="mt-4">
+                    <button class="btn btn-white border me-3 update-url" onclick="loadContent('obiective')">Obiective →</button>
+                    <button class="btn btn-primary update-url" style="font-weight: 500;">Adeziune</button>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container container1">
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="recentCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item card mb-4 active">
+                            <a href="https://startbootstrap.github.io/startbootstrap-blog-home/#!"><img class="card-img-top" src="./res/preview.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title">Recent</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                                <a href="your-link-here.html">Citește mai mult →</a>
+                            </div>
+                        </div>
+                        <div class="carousel-item card mb-4">
+                            <a href="https://startbootstrap.github.io/startbootstrap-blog-home/#!"><img class="card-img-top" src="./res/preview.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title">Recent 2</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                                <a href="your-link-here.html">Citește mai mult →</a>
+                            </div>
+                        </div>
+                        <div class="carousel-item card mb-4">
+                            <a href="https://startbootstrap.github.io/startbootstrap-blog-home/#!"><img class="card-img-top" src="./res/preview.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title">Recent 3</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                                <a href="your-link-here.html">Citește mai mult →</a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#recentCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#recentCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="contentPanel" class="card mb-4" style="display: none;"></div> 
+                <div id="contactPanel" class="card mb-4" style="display: none;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Contactează-ne</h4>
+                        <form id="contactForm">
+                            <div class="mb-3 text-start">
+                                <label for="name" class="form-label">Nume</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="message" class="form-label">Mesaj</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block w-100">Trimite</button>
+                        </form>
+                        <p class="mt-2 mb-1">Acest formular este criptat PGP. Doar noi îl putem citi.</p>
+                        <p class="mb-0">Amprenta: <span style="color: #ce1126;">ABCD EFGH IJKL MNOP QRST UVWX YZ12 3456 7890 ABCD</span></p>
+                    </div>
+                </div>
+                <div id="adeziunePanel" class="card mb-4" style="display: none;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Adeziune</h4>
+                        <p>Înainte de a completa această adeziune, citeste <a href="#">MANIFESTUL</a> si <a href="#">OBIECTIVELE</a> Asociației Comunitatea Identitară România, aruncă o privire peste tipurile de <a href="#">ACȚIUNI</a> și <a href="#">ARTICOLE</a> ce apar pe situl nostru pentru a fi sigur că te vei regăsi în ele dacă va trebui să le susții în viitor ca potențial membru al asociației noastre.</p>
+                        <form id="adeziuneForm">
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneName" class="form-label">Nume *</label>
+                                <input type="text" class="form-control" id="adeziuneName" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziunePrenume" class="form-label">Prenume *</label>
+                                <input type="text" class="form-control" id="adeziunePrenume" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneLocalitate" class="form-label">Localitatea *</label>
+                                <input type="text" class="form-control" id="adeziuneLocalitate" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneJudet" class="form-label">Judet *</label>
+                                <input type="text" class="form-control" id="adeziuneJudet" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneVarsta" class="form-label">Varsta *</label>
+                                <input type="number" class="form-control" id="adeziuneVarsta" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneEmail" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="adeziuneEmail" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneTelefon" class="form-label">Telefon *</label>
+                                <input type="tel" class="form-control" id="adeziuneTelefon" required>
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneStudii" class="form-label">Studii</label>
+                                <input type="text" class="form-control" id="adeziuneStudii">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneOcupatie" class="form-label">Ocupație</label>
+                                <input type="text" class="form-control" id="adeziuneOcupatie">
+                            </div>
+                            <div class="mb-3 text-start">
+                                <label for="adeziuneMotiv" class="form-label">Ce te-a determinat să aderi la Comunitatea Identitară? *</label>
+                                <textarea class="form-control" id="adeziuneMotiv" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block w-100">Trimite</button>
+                        </form>
+                        <p class="mt-2 mb-1">Acest formular este criptat PGP. Doar noi îl putem citi.</p>
+                        <p class="mb-0">Amprenta: <span style="color: #ce1126;">ABCD EFGH IJKL MNOP QRST UVWX YZ12 3456 7890 ABCD</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="1">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="2">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="3">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="4">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="5">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4" data-file-index="6">
+                            <a href="#"><img class="card-img-top" src="./res/preview1.jpg" alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">1 Ianuarie, 2023 · Blog</div>
+                                <h2 class="card-title h4">Titlu</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+                                <a href="#">Citește mai mult →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav aria-label="Pagination">
+                    <ul class="pagination justify-content-center my-4">
+                        <li class="page-item disabled"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#" tabindex="-1" aria-disabled="true">Noi</a></li>
+                        <li class="page-item active"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="https://startbootstrap.github.io/startbootstrap-blog-home/#!">Vechi</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Căutare</div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Introdu termenii..." aria-label="Introdu termenii..." aria-describedby="button-search">
+                            <button class="btn btn-primary" id="button-search" type="button">Caută!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Cine suntem?</div>
+                    <div class="card-body">
+                        Comunitatea Identitară este o organizație național-creștină înființată în 2019 de tineri din mai multe centre universitare din România. Luptăm pentru drepturile românilor din țară și diaspora, pentru o Românie Mare și Puternică, unde să fim stăpâni. Suntem o mișcare etnică, axată pe protejarea intereselor românilor, atât spirituale, cât și materiale. Nu negăm dreptul la existență al minorităților, dar prioritizăm românii, cu rădăcini, istorie și tradiții comune.
+                        <br><br>
+                        <a href="/manifest" onclick="loadContent('manifest')">Citește mai mult →</a>
+                        <img src="./res/motiv1.png" alt="Motiv 1" class="corner-image">
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Donează</div>
+                    <div class="card-body">
+                        A ne susține activitatea înseamnă a susține valorile care au făurit națiunea română, totodată reprezintă o declarație de război împotriva celor ce urmăresc să rescrie istoria și să ne șteargă identitatea. Militantismul și acțiunile filantropice ce le desfășurăm presupun și costuri materiale. Dacă te regăsești în lupta noastră, ne poți sprijini cu o donație! Orice ajutor contează, chiar unul mic!
+                        <br><br>
+                        Transfer LEI: <span class="highlight-text">RO84RNCB0837166157700001</span><br>
+                        Transfer EURO: <span class="highlight-text">RO57RNCB0837166157700002</span><br>
+                        Codul SWIFT: <span class="highlight-text">RNCBROBUXXX</span><br>
+                        <img src="./res/motiv2.png" alt="Motiv 2" class="corner-image">
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Urmărește-ne</div>
+                    <div class="card-body text-center">
+                        <a href="https://www.instagram.com" class="social-icon mx-2" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com" class="social-icon mx-2" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.tiktok.com" class="social-icon mx-2" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" class="social-icon mx-2" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://twitter.com" class="social-icon mx-2" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://t.me" class="social-icon mx-2" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-center align-items-center text-center">
+                    <p class="m-0 text-white" style="opacity: 0.4; font-size: 14px; transform: translate(0, -10px);">Copyright © Asociația Comunitatea Identitară <br>2019-2025. Toate drepturile rezervate. <br>"Fapta, nu vorba - fă, nu vorbi!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="py-3 bg-dark">
+    </footer>
+    <script src="./res/bootstrap.bundle.min.js"></script>
+    <script src="./res/scripts.js" defer></script>
+</body>
+</html>
