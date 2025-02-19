@@ -64,7 +64,7 @@ async function logMarkdownMetadata() {
         const carouselFiles = [carouselFile1, carouselFile2, carouselFile3];
         const carouselItems = recentCarousel.querySelectorAll('.carousel-item');
         for (let j = 0; j < carouselFiles.length && j < carouselItems.length; j++) {
-            const filePath = `https://vladtaranu.github.io/content/${carouselFiles[j]}.md`;
+            const filePath = `https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${carouselFiles[j]}.md`;
             const metadata = await fetchMarkdownFile(filePath);
             if (metadata) {
                 const carouselItem = carouselItems[j];
@@ -87,7 +87,7 @@ async function logMarkdownMetadata() {
     }
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `https://vladtaranu.github.io/content/${i + 1}.md`;
+        const filePath = `https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${i + 1}.md`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             if (type === 'acasa' || metadata.type.toLowerCase() === type) {
@@ -173,7 +173,7 @@ async function displayMarkdownContent(filePath, updateUrl = true) {
         // Update the URL with the postare parameter
         if (updateUrl) {
             const postIndex = filePath.match(/(\d+)\.md$/)[1];
-            const newUrl = postIndex === '1' ? `${window.location.origin}` : `${window.location.origin}/?postare=${postIndex}`;
+            const newUrl = postIndex === '1' ? `${window.location.origin}` : `${window.location.origin}/postare=${postIndex}`;
             history.pushState({ filePath }, '', newUrl);
         }
     } catch (error) {
@@ -182,7 +182,7 @@ async function displayMarkdownContent(filePath, updateUrl = true) {
 }
 
 function loadContent(type) {
-    const filePath = `/content/${type}.md`;
+    const filePath = `https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${type}.md`;
     displayMarkdownContent(filePath);
     const newUrl = `${window.location.origin}/${type}`;
     history.pushState({}, '', newUrl);
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}.md`);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${postIndex}.md`);
     } else if (type === 'obiective' || type === 'manifest') {
-        displayMarkdownContent(`/content/${type}.md`, false);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${type}.md`, false);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         const contactPanel = document.querySelector('#contactPanel');
@@ -307,7 +307,7 @@ document.querySelectorAll('.card a, .card-img-top').forEach((element, index) => 
     element.addEventListener('click', (event) => {
         event.preventDefault();
         const fileIndex = element.closest('.card').getAttribute('data-file-index');
-        displayMarkdownContent(`/content/${fileIndex}.md`);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${fileIndex}.md`);
     });
 });
 
@@ -315,7 +315,7 @@ document.querySelectorAll('.card').forEach((element) => {
     element.addEventListener('click', (event) => {
         event.preventDefault();
         const fileIndex = element.getAttribute('data-file-index');
-        displayMarkdownContent(`/content/${fileIndex}.md`);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${fileIndex}.md`);
     });
 });
 
@@ -362,7 +362,7 @@ window.addEventListener('popstate', (event) => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}.md`);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${postIndex}.md`);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         if (contentPanel) {
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(postIndex);
+        displayMarkdownContent(`https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${postIndex}.md`);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         const contactPanel = document.querySelector('#contactPanel');
@@ -450,7 +450,7 @@ document.getElementById('button-search').addEventListener('click', async (event)
 
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `https://vladtaranu.github.io/content/${i + 1}.md`;
+        const filePath = `https://raw.githubusercontent.com/VladTaranu/VladTaranu.github.io/refs/heads/main/content/${i + 1}.md`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             const content = await fetch(filePath).then(response => response.text());
