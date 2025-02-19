@@ -64,7 +64,7 @@ async function logMarkdownMetadata() {
         const carouselFiles = [carouselFile1, carouselFile2, carouselFile3];
         const carouselItems = recentCarousel.querySelectorAll('.carousel-item');
         for (let j = 0; j < carouselFiles.length && j < carouselItems.length; j++) {
-            const filePath = `http://localhost:8000/content/${carouselFiles[j]}.md`;
+            const filePath = `https://vladtaranu.github.io//content/${carouselFiles[j]}.md`;
             const metadata = await fetchMarkdownFile(filePath);
             if (metadata) {
                 const carouselItem = carouselItems[j];
@@ -87,7 +87,7 @@ async function logMarkdownMetadata() {
     }
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `http://localhost:8000/content/${i + 1}.md`;
+        const filePath = `https://vladtaranu.github.io//content/${i + 1}.md`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             if (type === 'acasa' || metadata.type.toLowerCase() === type) {
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`http://localhost:8000/content/${postIndex}.md`);
+        displayMarkdownContent(`https://vladtaranu.github.io//content/${postIndex}.md`);
     } else if (type === 'obiective' || type === 'manifest') {
         displayMarkdownContent(`/content/${type}.md`, false);
     } else {
@@ -362,7 +362,7 @@ window.addEventListener('popstate', (event) => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`http://localhost:8000/content/${postIndex}.md`);
+        displayMarkdownContent(`https://vladtaranu.github.io//content/${postIndex}.md`);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         if (contentPanel) {
@@ -450,7 +450,7 @@ document.getElementById('button-search').addEventListener('click', async (event)
 
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `http://localhost:8000/content/${i + 1}.md`;
+        const filePath = `https://vladtaranu.github.io//content/${i + 1}.md`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             const content = await fetch(filePath).then(response => response.text());
