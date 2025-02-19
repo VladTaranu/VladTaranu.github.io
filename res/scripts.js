@@ -64,7 +64,7 @@ async function logMarkdownMetadata() {
         const carouselFiles = [carouselFile1, carouselFile2, carouselFile3];
         const carouselItems = recentCarousel.querySelectorAll('.carousel-item');
         for (let j = 0; j < carouselFiles.length && j < carouselItems.length; j++) {
-            const filePath = `https://vladtaranu.github.io/content/${carouselFiles[j]}.md`;
+            const filePath = `https://vladtaranu.github.io/content/${carouselFiles[j]}`;
             const metadata = await fetchMarkdownFile(filePath);
             if (metadata) {
                 const carouselItem = carouselItems[j];
@@ -182,7 +182,7 @@ async function displayMarkdownContent(filePath, updateUrl = true) {
 }
 
 function loadContent(type) {
-    const filePath = `/content/${type}.md`;
+    const filePath = `/content/${type}`;
     displayMarkdownContent(filePath);
     const newUrl = `${window.location.origin}/${type}`;
     history.pushState({}, '', newUrl);
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}.md`);
+        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}`);
     } else if (type === 'obiective' || type === 'manifest') {
-        displayMarkdownContent(`/content/${type}.md`, false);
+        displayMarkdownContent(`/content/${type}`, false);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         const contactPanel = document.querySelector('#contactPanel');
@@ -307,7 +307,7 @@ document.querySelectorAll('.card a, .card-img-top').forEach((element, index) => 
     element.addEventListener('click', (event) => {
         event.preventDefault();
         const fileIndex = element.closest('.card').getAttribute('data-file-index');
-        displayMarkdownContent(`/content/${fileIndex}.md`);
+        displayMarkdownContent(`/content/${fileIndex}`);
     });
 });
 
@@ -315,7 +315,7 @@ document.querySelectorAll('.card').forEach((element) => {
     element.addEventListener('click', (event) => {
         event.preventDefault();
         const fileIndex = element.getAttribute('data-file-index');
-        displayMarkdownContent(`/content/${fileIndex}.md`);
+        displayMarkdownContent(`/content/${fileIndex}`);
     });
 });
 
@@ -362,7 +362,7 @@ window.addEventListener('popstate', (event) => {
     }
 
     if (postIndex) {
-        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}.md`);
+        displayMarkdownContent(`https://vladtaranu.github.io/content/${postIndex}`);
     } else {
         const contentPanel = document.querySelector('#contentPanel');
         if (contentPanel) {
