@@ -87,7 +87,7 @@ async function logMarkdownMetadata() {
     }
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `https://vladtaranu.github.io/content/${i + 1}.md`;
+        const filePath = `https://vladtaranu.github.io/content/${i + 1}`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             if (type === 'acasa' || metadata.type.toLowerCase() === type) {
@@ -450,7 +450,7 @@ document.getElementById('button-search').addEventListener('click', async (event)
 
     let matchingFiles = [];
     for (let i = 0; i < totalFiles; i++) {
-        const filePath = `https://vladtaranu.github.io/content/${i + 1}.md`;
+        const filePath = `https://vladtaranu.github.io/content/${i + 1}`;
         const metadata = await fetchMarkdownFile(filePath);
         if (metadata) {
             const content = await fetch(filePath).then(response => response.text());
